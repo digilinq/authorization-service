@@ -38,14 +38,6 @@ jobs:
           curl -D - -u $SONAR_TOKEN: http://sonarqube.lazycomputing.net:9000/api/v2/analysis/version
           echo "Sonar project key: $SONAR_PROJECT_KEY"
 
-      - name: Test sonar
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          ./gradlew test jacocoTestReport sonar -Dsonar.projectKey=Test01 -Dsonar.host.url=${{ vars.SONAR_HOST_URL }} -Dsonar.token=${{ secrets.SONAR_TOKEN }} -Dsonar.verbose=true
-
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -53,6 +45,3 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_PROJECT_KEY: ${{ vars.SONAR_PROJECT_KEY }}
         run: ./gradlew test jacocoTestReport sonar -Dsonar.projectKey=Test01
-
-
-
