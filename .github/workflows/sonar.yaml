@@ -25,17 +25,17 @@ jobs:
 
       - name: Diag
         env:
+          SONAR_URL: http://sonarqube.lzaycomputing.net:9000
           SONAR_HOST_URL: ${{ env.SONAR_HOST_URL }}
           SONAR_PROJECT_KEY: ${{ env.SONAR_PROJECT_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          ./gradlew --version
-          ./gradlew tasks --all
+          echo "SONAR_URL: $SONAR_URL"
           echo "SONAR_HOST_URL: $SONAR_HOST_URL"
-          echo "SONAR_TOKEN: $SONAR_TOKEN"
+          echo "SONAR_PROJECT_KEY: $SONAR_PROJECT_KEY"
           echo "GITHUB_TOKEN: $GITHUB_TOKEN"
-          echo "SONAR_PROJECT_KEY: $SONAR_PROJECT_KEY"          
+          echo "SONAR_TOKEN: $SONAR_TOKEN"
 
       - name: Build and analyze
         env:
