@@ -33,7 +33,7 @@ jobs:
           ./gradlew --version
           ./gradlew tasks --all
           echo "SONAR_HOST_URL: $SONAR_HOST_URL"
-          echo "SONAR_TOKEN: $SONAR_TOKEN
+          echo "SONAR_TOKEN: $SONAR_TOKEN"
           echo "GITHUB_TOKEN: $GITHUB_TOKEN"
           echo "SONAR_PROJECT_KEY: $SONAR_PROJECT_KEY"          
 
