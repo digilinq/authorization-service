@@ -36,4 +36,4 @@ jobs:
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_PROJECT_KEY: ${{ vars.SONAR_PROJECT_KEY }}
-        run: ./gradlew test jacocoTestReport sonar -Dsonar.projectKey=Test01 -Dsonar.verbose=true
+        run: ./gradlew test jacocoTestReport sonar -Dsonar.verbose=true
