@@ -23,25 +23,10 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Diag
-        env:
-          SONAR_URL: 'http://sonarqube.lzaycomputing.net:9000'
-          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
-          SONAR_PROJECT_KEY: ${{ vars.SONAR_PROJECT_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          echo "SONAR_URL: $SONAR_URL"
-          echo "SONAR_HOST_URL: $SONAR_HOST_URL"
-          echo "SONAR_PROJECT_KEY: $SONAR_PROJECT_KEY"
-          echo "GITHUB_TOKEN: $GITHUB_TOKEN"
-          echo "SONAR_TOKEN: $SONAR_TOKEN"
-
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ vars.SONAR_TOKEN }}
         run: ./gradlew test jacocoTestReport sonar
 
