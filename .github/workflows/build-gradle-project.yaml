@@ -1,7 +1,9 @@
 name: Build Gradle Project
 on:
   push:
-    branches: ['feature/*']
+    branches:
+      - 'feature/*'
+      - '**'
 
 jobs:
   build:
