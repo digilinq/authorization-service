@@ -42,6 +42,12 @@ jobs:
       NAMESPACE: ${{ vars.DOCKER_HUB_USERNAME }}
       IMAGE_NAME: ${{ vars.DOCKER_HUB_REPOSITORY }}
     steps:
+      - name: Validate required variables
+        run: |
+          if [ -z "${{ vars.DOCKER_HUB_REPOSITORY }}" ]; then
+            echo "Error: DOCKER_HUB_REPOSITORY is not set."
+            exit 1
+          fi
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
