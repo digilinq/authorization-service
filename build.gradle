@@ -52,6 +52,14 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+tasks.bootJar {
+	archiveBaseName.set("svc")
+	archiveVersion.set("")
+	doLast {
+		println "Boot jar created: ${archiveFile.get().asFile}"
+	}
+}
+
 test {
 	useJUnitPlatform()
     finalizedBy jacocoTestReport
@@ -63,4 +71,3 @@ jacocoTestReport {
 		xml.required = true
 	}
 }
-
