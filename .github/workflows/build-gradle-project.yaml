@@ -22,7 +22,7 @@ jobs:
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
         with:
           arguments: build
-      - run: mkdir staging && cp infrastructure/web/build/libs/*.jar staging
+      - run: mkdir staging && cp build/libs/*.jar staging
       - run: cp ci/Dockerfile staging
       - uses: actions/upload-artifact@v4
         with:
