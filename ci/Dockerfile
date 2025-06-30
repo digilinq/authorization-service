@@ -2,13 +2,10 @@
 FROM eclipse-temurin:21-jre
 
 # Set working directory
-WORKDIR /svc
-
-# Copy Dockerfile and other necessary files
-COPY ci/Dockerfile ./
+WORKDIR /app
 
 # Copy the jar file from the build directory
-COPY build/libs/svc.jar ./
+COPY svc.jar ./
 
 # Expose port 8080 (default Spring Boot port)
 EXPOSE 8080
