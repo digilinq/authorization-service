@@ -94,4 +94,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            JAR_FILE=${{ steps.get_jar.outputs.jar_file_name }}
+            JAR_FILE=${{ needs.build.outputs.jar_file_name }}
