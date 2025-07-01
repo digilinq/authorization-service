@@ -53,10 +53,14 @@ dependencies {
 }
 
 tasks.bootJar {
-	archiveBaseName.set("svc")
-	archiveVersion.set("")
 	doLast {
 		println "Boot jar created: ${archiveFile.get().asFile}"
+	}
+}
+
+tasks.register('printBootJarName') {
+	doLast {
+		println tasks.bootJar.archiveFile.get().asFile.name
 	}
 }
 
