@@ -107,3 +107,6 @@ jobs:
           k8s-url: ${{ secrets.KUBERNETES_URL }}
           k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
           namespace: ${{ env.NAMESPACE }}
+      - name: Deploy nginx for test
+        run: |
+          kubectl run --image=nginx:latest nginx
