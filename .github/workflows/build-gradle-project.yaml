@@ -97,6 +97,7 @@ jobs:
     needs: [ publish ]
     env:
       NAMESPACE: example
+      REPLICAS: 2
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -107,6 +108,12 @@ jobs:
           k8s-url: ${{ secrets.KUBERNETES_URL }}
           k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
           namespace: ${{ env.NAMESPACE }}
-      - name: Deploy nginx for test
-        run: |
-          kubectl run --image=nginx:latest nginx
+      - name: Deploy to the Kubernetes cluster
+        uses: azure/k8s-deploy@v5
+        with:
+          namespace: example
+          manifests: |
+            manifests/deployment.yml
+            manifests/service.yaml
+          images: |
+            ${{ needs.create-docker-image.outputs.docker-image }}
