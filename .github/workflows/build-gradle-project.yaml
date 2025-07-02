@@ -107,7 +107,6 @@ jobs:
           method: service-account
           k8s-url: ${{ secrets.KUBERNETES_URL }}
           k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
-          namespace: ${{ env.NAMESPACE }}
       - name: Deploy to the Kubernetes cluster
         uses: azure/k8s-deploy@v5
         with:
@@ -116,4 +115,4 @@ jobs:
             manifests/deployment.yml
             manifests/service.yaml
           images: |
-            ${{ needs.create-docker-image.outputs.docker-image }}
+            ${{ needs.publish.outputs.docker-image }}
