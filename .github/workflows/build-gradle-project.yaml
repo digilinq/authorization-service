@@ -114,7 +114,8 @@ jobs:
           action: deploy
           namespace: ${{ env.NAMESPACE }}
           manifests: |
-            manifests/deployment.yml
+            manifests/deployment.yaml
             manifests/service.yaml
+            manifests/ingress.yaml
           images: |
             ${{ needs.publish.outputs.docker-image }}
