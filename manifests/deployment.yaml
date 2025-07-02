@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authorization
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: authorization
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: authorization
+        app: authorization
+    spec:
+      containers:
+        - name: authorization
+          image: docker.io/lazycomputing/authorization-service
+          env:
+            - name: APP_VERSION
+              value: "1.0.0"
+          envFrom:
+            - configMapRef:
+                name: authorization-service-config
+          ports:
+            - containerPort: 8080
+              name: service
+            - containerPort: 8081
+              name: management
